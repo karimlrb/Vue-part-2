@@ -25,10 +25,11 @@
     <div id="app">
       <button @click="isBlue = !isBlue">Bleu</button>
       <button @click="isUnderline = !isUnderline">Souligné</button>
-      <h1 class="title" :class="[myClass, {red : !isBlue}]">Titre 1</h1>
-      <h1 class="title" :class="myClass">Titre 2</h1>
-      <h1 class="title" :class="color">Titre 3</h1>
+      <h1 class="title" :style="[{color:color}, myStyle]">Titre 1</h1>
+      <h1 class="title" :style="myStyle">Titre 2</h1>
+      <h1 class="title" :style="myStyle">Titre 3</h1>
       <input type="text" v-model="color" />
+      <input type="text" v-model="size" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -36,15 +37,13 @@
       new Vue({
         el: "#app",
         data: {
-          isBlue: true,
-          isUnderline: true,
           color: "red",
+          size: 35,
         },
         computed: {
-          myClass: function () {
+          myStyle: function () {
             return {
-              blue: this.isBlue,
-              underline: this.isUnderline,
+              "font-size": this.size + "px",
             };
           },
         },
