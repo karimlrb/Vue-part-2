@@ -8,9 +8,12 @@
   </head>
   <body>
     <div id="app">
-      <button @click="increase(4, $event)">Incrémenter</button>
+      <button @click="counter++">Incrémenter</button>
+      <button @click="counter--">Décrémenter</button>
+      <button @click="counterTwo++">Incrémenter2</button>
       <h3>{{counter}}</h3>
-      <input @keyup.space.enter="alert('Une touche est appué')" type="text" />
+      <h3>{{counterTwo}}</h3>
+      <h3>{{wordMethod()}} --- {{ wordComputed }}</h3>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -19,15 +22,18 @@
         el: "#app",
         data: {
           counter: 0,
-          tagname: "",
+          counterTwo: 0,
+        },
+        computed: {
+          wordComputed: function () {
+            console.log("In computed");
+            return this.counter < 0 ? "Négatif" : "Positif";
+          },
         },
         methods: {
-          increase: function (step, e) {
-            this.counter += step;
-            this.tagname = e.target.tagName;
-          },
-          hover: function (e) {
-            this.tagname = e.target.tagName;
+          wordMethod: function () {
+            console.log("In method");
+            return this.counter < 0 ? "Négatif" : "Positif";
           },
         },
       });
