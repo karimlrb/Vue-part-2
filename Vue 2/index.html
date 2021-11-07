@@ -13,7 +13,7 @@
       <button @click="counterTwo++">Incrémenter2</button>
       <h3>{{counter}}</h3>
       <h3>{{counterTwo}}</h3>
-      <h3>{{wordMethod()}} --- {{ wordComputed }}</h3>
+      <h3>{{wordMethod()}} --- {{ wordComputed }} -- {{ word }}</h3>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -23,10 +23,17 @@
         data: {
           counter: 0,
           counterTwo: 0,
+          word: "Positif",
         },
         computed: {
           wordComputed: function () {
             console.log("In computed");
+            return this.counter < 0 ? "Négatif" : "Positif";
+          },
+        },
+        watch: {
+          counter: function (value) {
+            console.log("in Watch");
             return this.counter < 0 ? "Négatif" : "Positif";
           },
         },
