@@ -8,9 +8,12 @@
   </head>
   <body>
     <div id="app">
-      <h1>{{title + '!!!'}}</h1>
-      <button v-on:click="reverseTitle">Inverser</button>
-      
+      <button @click="increase(4, $event)">Incrémenter</button>
+      <h3>{{counter}}</h3>
+      <p @mouseover="hover">
+        Lorem ipsum dolor sit amet. <br />
+        <strong @mouseover.stop="">Important</strong><br />
+        Balise : {{ tagname }}
       </p>
     </div>
 
@@ -19,12 +22,16 @@
       new Vue({
         el: "#app",
         data: {
-          title: "Mon titre !",
-          strontTag: "<stron> IMPORTANT </strong>",
+          counter: 0,
+          tagname: "",
         },
         methods: {
-          reverseTitle: function () {
-            this.title = this.title.split("").reverse().join("");
+          increase: function (step, e) {
+            this.counter += step;
+            this.tagname = e.target.tagName;
+          },
+          hover: function (e) {
+            this.tagname = e.target.tagName;
           },
         },
       });
