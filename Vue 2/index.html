@@ -6,14 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue js 2</title>
   </head>
+  <style>
+    * {
+      font-style: italic;
+      font-size: 35px;
+    }
+    .blue {
+      color: blue;
+    }
+    .underline {
+      text-decoration: underline;
+    }
+    .red {
+      color: red;
+    }
+  </style>
   <body>
     <div id="app">
-      <button @click="counter++">Incrémenter</button>
-      <button @click="counter--">Décrémenter</button>
-      <button @click="counterTwo++">Incrémenter2</button>
-      <h3>{{counter}}</h3>
-      <h3>{{counterTwo}}</h3>
-      <h3>{{wordMethod()}} --- {{ wordComputed }} -- {{ word }}</h3>
+      <button @click="isBlue = !isBlue">Bleu</button>
+      <button @click="isUnderline = !isUnderline">Souligné</button>
+      <h1 class="title" :class="[myClass, {red : !isBlue}]">Titre 1</h1>
+      <h1 class="title" :class="myClass">Titre 2</h1>
+      <h1 class="title" :class="color">Titre 3</h1>
+      <input type="text" v-model="color" />
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -21,26 +36,16 @@
       new Vue({
         el: "#app",
         data: {
-          counter: 0,
-          counterTwo: 0,
-          word: "Positif",
+          isBlue: true,
+          isUnderline: true,
+          color: "red",
         },
         computed: {
-          wordComputed: function () {
-            console.log("In computed");
-            return this.counter < 0 ? "Négatif" : "Positif";
-          },
-        },
-        watch: {
-          counter: function (value) {
-            console.log("in Watch");
-            return this.counter < 0 ? "Négatif" : "Positif";
-          },
-        },
-        methods: {
-          wordMethod: function () {
-            console.log("In method");
-            return this.counter < 0 ? "Négatif" : "Positif";
+          myClass: function () {
+            return {
+              blue: this.isBlue,
+              underline: this.isUnderline,
+            };
           },
         },
       });
