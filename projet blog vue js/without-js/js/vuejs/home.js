@@ -1,8 +1,9 @@
 new Vue({
   el: "#app",
   data: {
-    inPagePrduct: false,
+    inPageProduct: false,
     products: {
+      currentIndex: 0,
       data: [
         {
           name: "Casque Noir",
@@ -24,7 +25,7 @@ new Vue({
           name: "Chaussure bleue",
           img: "img/portfolio3.jpg",
           client: "Envato 2",
-          categories: ["Fashion", "Design"],
+          categories: ["Fashion", "Shoes"],
           visit: "envato.com",
           date: "01.09.2018",
         },
@@ -67,6 +68,21 @@ new Vue({
             "Far curiosity incommode now led smallness allowance. Favour bed assure son things yet. She consisted consulted elsewhere happiness disposing household any old the.Widow downs you new shade drift hopes small.So otherwise commanded sweetness we improving.",
         },
       ],
+    },
+  },
+  computed: {
+    currentProduct: function () {
+      return this.products.data[this.products.currentIndex];
+    },
+  },
+  methods: {
+    showProduct: function (index) {
+      this.products.currentIndex = index;
+      this.inPageProduct = true;
+      window.scrollTo(0, 0);
+    },
+    homeLink: function () {
+      this.inPageProduct = false;
     },
   },
 });

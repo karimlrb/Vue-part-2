@@ -75,19 +75,19 @@ CSS
                   <div class="dopenav">
                     <ul id="nav">
                       <li>
-                        <a href="#banner-section">Accueil</a>
+                        <a @click="homeLink" href="#banner-section">Accueil</a>
                       </li>
                       <li>
-                        <a href="#section-portfolio">Projets</a>
+                        <a @click="homeLink" href="#section-portfolio">Projets</a>
                       </li>
                       <li>
-                        <a href="#section-screenshots">Screenshots</a>
+                        <a @click="homeLink" href="#section-screenshots">Screenshots</a>
                       </li>
                       <li>
-                        <a href="#section-faq">FAQ</a>
+                        <a @click="homeLink" href="#section-faq">FAQ</a>
                       </li>
                       <li>
-                        <a href="#testimonial-section">Avis</a>
+                        <a @click="homeLink" href="#testimonial-section">Avis</a>
                       </li>
                       <li>
                         <a href="blog.html">Blog</a>
@@ -102,7 +102,7 @@ CSS
         </div>
       </header>
       <!-- Start header section -->
-      <template></template>
+      <div v-show="!inPageProduct">
       <!-- Start banner section -->
       <section class="banner-section relative section-gap-full"id="banner-section">
         <div class="overlay overlay-bg"></div>
@@ -160,7 +160,7 @@ CSS
                   <div class="single-portfolio">
                     <img alt="" class="img-fluid" :src="product.img" />
                     <div class="box-content">
-                      <a href="single-portfolio.html">
+                      <a class="pointerElement" @click="showProduct(index)">
                         <h5 class="title">{{product.name}}</h5>
                       </a>
                       <span class="post">Produit {{ index +1 }}</span>
@@ -176,7 +176,7 @@ CSS
                     <div class="single-portfolio">
                       <img alt="" class="img-fluid" :src="product.img" />
                       <div class="box-content">
-                        <a href="single-portfolio.html">
+                        <a class="pointerElement" @click="showProduct(index)">
                           <h5 class="title">{{product.name}}</h5>
                         </a>
                         <span class="post">Produit {{ index +1 }}</span>
@@ -192,10 +192,7 @@ CSS
       <!-- End portfolio section -->
 
       <!-- Start screenshot section -->
-      <section
-        class="screenshot-section section-gap-full"
-        id="section-screenshots"
-      >
+      <section class="screenshot-section section-gap-full" id="section-screenshots" >
         <div class="container">
           <div class="section-title">
             <h2 class="text-center">Screenshots de notre app</h2>
@@ -418,6 +415,50 @@ CSS
         </div>
       </section>
       <!-- End download section -->
+
+    </div>
+
+    <div v-show="inPageProduct">
+            <!-- Start page-top-banner section -->
+    <section class="page-top-banner section-gap-full relative" data-stellar-background-ratio="0.5">
+        <div class="overlay overlay-bg"></div>
+        <div class="container">
+            <div class="row section-gap-half">
+                <div class="col-lg-12 text-center">
+                    <h1> {{ currentProduct.name }} </h1>
+                    <h4>Produit</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End about-top-banner section -->
+
+    <!-- Start product-detials section -->
+    <section class="product-detials-section section-gap-full">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 details-left">
+                    <img class="img-fluid" :src="currentProduct.img"  >
+                </div>
+                <div class="col-lg-4 details-right">
+                    <ul>
+                        <li><span>Client:</span> {{currentProduct.client}}</li>
+                        <li><span>Category:</span> {{currentProduct.categories.join(', ')}}</li>
+                        <li><span>Visit:</span> {{currentProduct.visit}}</li>
+                        <li><span>Date:</span> {{currentProduct.date}}</li>
+                    </ul>
+                    <p>                  
+                        To shewing another demands to. Marianne property cheerful informed at striking at.
+                    </p>
+                    <p>
+                        Received shutters expenses ye he pleasant. Drift as blind above at up. No up simple county stairs do should praise as. Drawings sir gay together landlord had law smallest. Formerly welcomed attended declared met say unlocked. Jennings outlived no dwelling denoting in peculiar.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End product-detials section -->
+    </div>
     </main>
     <div class="scroll-top">
       <i class="ti-angle-up"></i>
