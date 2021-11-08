@@ -13,12 +13,23 @@
   </style>
   <body>
     <div id="app">
-      <button @click="show = !show">Inverser le texte</button>
-      <template v-if="color == 'red' ">
-        <p>C'est rouge</p>
-        <strong>Oui du rouge</strong>
-      </template>
-      <h1 v-else>Autre texte !</h1>
+      <!-- <ul>
+        <li :key="index" v-for="(name, index) in names">
+          {{ name }} , {{index}}
+        </li>
+      </ul> -->
+      <ul>
+        <li v-for="n in 10">{{ n*3 }}</li>
+      </ul>
+      <!-- <template v-for="(name, index) in names">
+          <h1>{{name}}</h1>
+          <span>{{index}}</span>
+        </template> -->
+      <!-- <template v-for="myObject in names">
+          <h1 v-for="(value, key, i) in myObject">
+            {{ i }} {{key}} : {{ value }}
+          </h1>
+        </template> -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -26,8 +37,17 @@
       new Vue({
         el: "#app",
         data: {
-          show: false,
-          color: "",
+          // names: ["John", "Jane", "Alex"],
+          // names: [
+          //   {
+          //     name: "Denzel",
+          //     age: 44,
+          //   },
+          //   {
+          //     name: "Snake",
+          //     age: 27,
+          //   },
+          // ],
         },
       });
     </script>
