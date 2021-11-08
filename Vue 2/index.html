@@ -7,29 +7,18 @@
     <title>Vue js 2</title>
   </head>
   <style>
-    * {
-      font-style: italic;
-      font-size: 35px;
-    }
-    .blue {
-      color: blue;
-    }
-    .underline {
-      text-decoration: underline;
-    }
-    .red {
-      color: red;
+    p {
+      font-size: 25px;
     }
   </style>
   <body>
     <div id="app">
-      <button @click="isBlue = !isBlue">Bleu</button>
-      <button @click="isUnderline = !isUnderline">Souligné</button>
-      <h1 class="title" :style="[{color:color}, myStyle]">Titre 1</h1>
-      <h1 class="title" :style="myStyle">Titre 2</h1>
-      <h1 class="title" :style="myStyle">Titre 3</h1>
-      <input type="text" v-model="color" />
-      <input type="text" v-model="size" />
+      <button @click="show = !show">Inverser le texte</button>
+      <template v-if="color == 'red' ">
+        <p>C'est rouge</p>
+        <strong>Oui du rouge</strong>
+      </template>
+      <h1 v-else>Autre texte !</h1>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
@@ -37,15 +26,8 @@
       new Vue({
         el: "#app",
         data: {
-          color: "red",
-          size: 35,
-        },
-        computed: {
-          myStyle: function () {
-            return {
-              "font-size": this.size + "px",
-            };
-          },
+          show: false,
+          color: "",
         },
       });
     </script>
